@@ -1,0 +1,6 @@
+TODO:
+-Add TikTok Scraper no CAPTCHA?
+-Add Pinterest Scraper
+-Add Reddit Scraper
+-Add Facebook Scraper?
+
