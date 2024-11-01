@@ -1,0 +1,7 @@
+TODO:
+- TikTok scrapper
+- train model to do multiclass classification - accuracy on tes at least 90%
+- train model to handle NLP data
+
+
+
