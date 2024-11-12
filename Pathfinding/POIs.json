@@ -1,0 +1,94 @@
+{
+    "tourist_attractions": [
+        {
+            "name": "Wawel Castle",
+            "type": "Historical Site",
+            "position": {
+                "latitude": 50.054166,
+                "longitude": 19.935083
+            },
+            "tags": ["castle", "history", "museum", "architecture"]
+        },
+        {
+            "name": "Main Market Square",
+            "type": "Public Square",
+            "position": {
+                "latitude": 50.061430,
+                "longitude": 19.937034
+            },
+            "tags": ["square", "market", "shopping", "restaurants"]
+        },
+        {
+            "name": "St. Mary's Basilica",
+            "type": "Church",
+            "position": {
+                "latitude": 50.061573,
+                "longitude": 19.939119
+            },
+            "tags": ["church", "gothic", "architecture", "landmark"]
+        },
+        {
+            "name": "Kazimierz District",
+            "type": "Neighborhood",
+            "position": {
+                "latitude": 50.048477,
+                "longitude": 19.944981
+            },
+            "tags": ["neighborhood", "culture", "nightlife", "history"]
+        },
+        {
+            "name": "Cloth Hall",
+            "type": "Marketplace",
+            "position": {
+                "latitude": 50.061688,
+                "longitude": 19.937556
+            },
+            "tags": ["market", "shopping", "souvenirs", "architecture"]
+        },
+        {
+            "name": "Oskar Schindler's Enamel Factory",
+            "type": "Museum",
+            "position": {
+                "latitude": 50.048080,
+                "longitude": 19.961828
+            },
+            "tags": ["museum", "history", "WWII", "Jewish heritage"]
+        },
+        {
+            "name": "Planty Park",
+            "type": "Park",
+            "position": {
+                "latitude": 50.060653,
+                "longitude": 19.935569
+            },
+            "tags": ["park", "nature", "walking", "scenic"]
+        },
+        {
+            "name": "Wieliczka Salt Mine",
+            "type": "Natural Site",
+            "position": {
+                "latitude": 49.983056,
+                "longitude": 20.055000
+            },
+            "tags": ["salt mine", "UNESCO", "underground", "tour"]
+        },
+        {
+            "name": "Jagiellonian University",
+            "type": "Historical Site",
+            "position": {
+                "latitude": 50.060991,
+                "longitude": 19.933384
+            },
+            "tags": ["university", "history", "architecture", "education"]
+        },
+        {
+            "name": "The Barbican",
+            "type": "Historical Site",
+            "position": {
+                "latitude": 50.065468,
+                "longitude": 19.941315
+            },
+            "tags": ["fortress", "medieval", "architecture", "history"]
+        }
+    ]
+}

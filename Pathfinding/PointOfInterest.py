@@ -1,5 +1,7 @@
+from typing import List
+
 class POI:
-    def __init__(self, name: str, type: str, latitude: float, longitude: float, tags: dict):
+    def __init__(self, name: str, type: str, latitude: float, longitude: float, tags: List[str]):
         self.name = name
         self.type = type
         self.latitude = latitude
