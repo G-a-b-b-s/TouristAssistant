@@ -4,7 +4,8 @@ import pandas as pd
 
 def create_single_csv(folder_name):
     script_dir = os.path.dirname(__file__)
-    file_path = os.path.join(script_dir, '..', 'text', f'{folder_name}', f'{folder_name}.txt')
+    # file_path = os.path.join(script_dir, '..', 'text', f'{folder_name}', f'{folder_name}.txt')
+    file_path = os.path.join(script_dir, f'{folder_name}', f'{folder_name}.txt')
 
     with open (file_path, 'r', encoding='utf-8') as file:
         text = file.read()
@@ -48,4 +49,5 @@ def create_big_csv():
     with open(os.path.join(base_dir, 'CumulatedTable.csv'), 'w', encoding='utf-8') as file:
         data.to_csv(file, index=False)
 
+create_single_csv('Foodies')
 create_big_csv()

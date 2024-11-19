@@ -1,24 +1,27 @@
-from math import cos, sqrt
+from numpy import cos, sqrt
 from typing import List
 
 from PointOfInterest import POI
 
-def distance(v1: POI, v2: POI):
-    latitude_diff = v1.latitude - v2.latitude
-    longitude_diff = v1.longitude - v2.longitude
-    mean_latitude = (v1.latitude + v2.latitude) / 2
-    cmp = latitude_diff ** 2 + (longitude_diff * cos(mean_latitude)) ** 2
+def geodistance(lat1, lon1, lat2, lon2):
+    lat_diff = lat1 - lat2
+    lon_diff = lon1 - lon2
+    mean_lat = (lat1 + lat2) / 2
+    cmp = lat_diff ** 2 + (lon_diff * cos(mean_lat)) ** 2
     R = 6371009
     return R * sqrt(cmp)
 
 class Graph:
+    vertices: List[POI]
+    matrix: List[List[float]]
+
     def __init__(self, vertices: List[POI], matrix: List[List[float]] = None):
         self.vertices = vertices
 
         if matrix:
             self.matrix = matrix
         else:
-            self.matrix = [[distance(v1, v2)
+            self.matrix = [[geodistance(v1.latitude, v1.longitude, v2.latitude, v2.longitude)
                         for v2 in vertices]
                         for v1 in vertices]
 
