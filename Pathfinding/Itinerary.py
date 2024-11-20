@@ -1,8 +1,8 @@
 import numpy as np
 from typing import List
 
-from PointOfInterest import POI
-from Graph import Graph, geodistance
+from Pathfinding.PointOfInterest import POI
+from Pathfinding.Graph import Graph, geodistance
 
 class Itinerary:
     daily_pois: List[List[POI]]
@@ -42,3 +42,12 @@ class Itinerary:
             for i, poi in enumerate(pois):
                 result += f"{i + 1}. {poi.name}.\n"
         return result.strip()
+    
+    def to_json(self):
+        result = []
+        for day in self.daily_pois:
+            pois = []
+            for poi in day:
+                pois.append(poi.to_json())
+            result.append(pois)
+        return result

@@ -1,4 +1,7 @@
 venv/*
 **/__pycache__/*
 data/NightLife/*
+data/tourist_data.json
 data/text/**/*.csv
+**/node_modules/*
+Page/dataOfUsers/*

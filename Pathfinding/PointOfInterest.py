@@ -18,3 +18,14 @@ class POI:
 
     def __repr__(self):
         return f"{self.name}, {self.type} ({self.latitude}, {self.longitude})"
+    
+    def to_json(self):
+        return {
+            'name': self.name,
+            'type': self.type,
+            'position': {
+                'latitude': self.latitude,
+                'longitude': self.longitude
+            },
+            'tags': self.tags
+        }
