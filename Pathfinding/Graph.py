@@ -1,7 +1,7 @@
 from numpy import cos, sqrt
 from typing import List
 
-from PointOfInterest import POI
+from Pathfinding.PointOfInterest import POI
 
 def geodistance(lat1, lon1, lat2, lon2):
     lat_diff = lat1 - lat2
