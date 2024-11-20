@@ -8,34 +8,18 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
-     <style>
-        body {
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            background-color: rgb(252, 249, 223);
-        }
-        #container {
-            display: flex;
-            justify-content: space-around;
-        }
-        #map {
-            height: 95vh;
-            width: 75vw;
-            border: 5px solid #444;
-            border-radius: 25px;
-        }
-        #list {
-            width: 15vw;
-            height: 95vh;
-            padding: 0 20px;
-            border: 5px solid #444;
-            border-radius: 25px;
-            background-color: #eee;
-        }
-     </style>
+     <link rel="stylesheet" href="static/css/map.css">
 </head>
 <body>
     <div id="container">
-        <div id="list"></div>
+        <div id="side">
+            <form id="form">
+                <label for="num-of-days">Number of days:</label>
+                <input id="num-of-days" name="num-of-days" type="text" value="3">
+                <input type="submit" style="display: none;">
+            </form>
+            <div id="list"></div>
+        </div>
         <div id="map"></div>
     </div>
 

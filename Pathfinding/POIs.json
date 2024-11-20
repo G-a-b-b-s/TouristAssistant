@@ -89,6 +89,96 @@
                 "longitude": 19.941315
             },
             "tags": ["fortress", "medieval", "architecture", "history"]
+        },
+        {
+            "name": "Kraków Old Town",
+            "type": "Historical District",
+            "position": {
+                "latitude": 50.061389,
+                "longitude": 19.937222
+            },
+            "tags": ["UNESCO", "historical", "walking", "architecture"]
+        },
+        {
+            "name": "Benedictine Abbey in Tyniec",
+            "type": "Monastery",
+            "position": {
+                "latitude": 50.009778,
+                "longitude": 19.798833
+            },
+            "tags": ["monastery", "religion", "history", "scenic"]
+        },
+        {
+            "name": "Museum of Contemporary Art in Kraków (MOCAK)",
+            "type": "Museum",
+            "position": {
+                "latitude": 50.048928,
+                "longitude": 19.960978
+            },
+            "tags": ["museum", "art", "contemporary", "exhibitions"]
+        },
+        {
+            "name": "Tauron Arena Kraków",
+            "type": "Event Venue",
+            "position": {
+                "latitude": 50.068580,
+                "longitude": 19.978504
+            },
+            "tags": ["arena", "concerts", "events", "modern"]
+        },
+        {
+            "name": "Kościuszko Mound",
+            "type": "Historical Monument",
+            "position": {
+                "latitude": 50.050200,
+                "longitude": 19.889333
+            },
+            "tags": ["monument", "viewpoint", "history", "landmark"]
+        },
+        {
+            "name": "Manggha Museum of Japanese Art and Technology",
+            "type": "Museum",
+            "position": {
+                "latitude": 50.048611,
+                "longitude": 19.926389
+            },
+            "tags": ["museum", "art", "Japanese culture", "modern"]
+        },
+        {
+            "name": "Błonia Park",
+            "type": "Park",
+            "position": {
+                "latitude": 50.059722,
+                "longitude": 19.915833
+            },
+            "tags": ["park", "nature", "sports", "leisure"]
+        },
+        {
+            "name": "Krakus Mound",
+            "type": "Historical Monument",
+            "position": {
+                "latitude": 50.041631,
+                "longitude": 19.961250
+            },
+            "tags": ["monument", "ancient", "viewpoint", "history"]
+        },
+        {
+            "name": "Nowa Huta",
+            "type": "Neighborhood",
+            "position": {
+                "latitude": 50.073840,
+                "longitude": 20.039888
+            },
+            "tags": ["neighborhood", "communist history", "architecture", "culture"]
+        },
+        {
+            "name": "Rynek Underground Museum",
+            "type": "Museum",
+            "position": {
+                "latitude": 50.061545,
+                "longitude": 19.937210
+            },
+            "tags": ["museum", "history", "archeology", "interactive"]
         }
     ]
 }
