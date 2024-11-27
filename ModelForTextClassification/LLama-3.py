@@ -1,13 +1,11 @@
 import os
-
 import pandas as pd
 import torch
 from torch.utils.data import Dataset, DataLoader
 from transformers import DistilBertTokenizer, DistilBertModel
 
 
-# Creating the customized model, by adding a drop out and a dense layer on top of distil bert to get the final output for the model.
-
+# Customized model with DistilBERT and additional layers
 class DistillBERTClass(torch.nn.Module):
     def __init__(self):
         super(DistillBERTClass, self).__init__()
@@ -18,7 +16,7 @@ class DistillBERTClass(torch.nn.Module):
 
     def forward(self, input_ids, attention_mask):
         output_1 = self.l1(input_ids=input_ids, attention_mask=attention_mask)
-        hidden_state = output_1[0]
+        hidden_state = output_1.last_hidden_state
         pooler = hidden_state[:, 0]
         pooler = self.pre_classifier(pooler)
         pooler = torch.nn.ReLU()(pooler)
@@ -26,6 +24,8 @@ class DistillBERTClass(torch.nn.Module):
         output = self.classifier(pooler)
         return output
 
+
+# Dataset class
 class TestDataSet(Dataset):
     def __init__(self, dataframe, tokenizer, max_len):
         self.len = len(dataframe)
@@ -35,13 +35,13 @@ class TestDataSet(Dataset):
 
     def __getitem__(self, index):
         text = str(self.data.text[index])
-        text = " ".join(text.split())
+        text = " ".join(text.split())  # Clean and format text
         inputs = self.tokenizer.encode_plus(
             text,
             None,
             add_special_tokens=True,
             max_length=self.max_len,
-            pad_to_max_length=True,
+            padding='max_length',  # Updated argument
             return_token_type_ids=True,
             truncation=True
         )
@@ -57,54 +57,52 @@ class TestDataSet(Dataset):
     def __len__(self):
         return self.len
 
+
+# Check device compatibility
 from torch import cuda
 device = 'cuda' if cuda.is_available() else 'cpu'
 
+# Load dataset
 data = pd.read_csv('../data/text/CumulatedTable.csv')
-
 
 MAX_LEN = 512
 TRAIN_BATCH_SIZE = 4
 VALID_BATCH_SIZE = 2
 EPOCHS = 3
 LEARNING_RATE = 1e-05
-tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-cased')
+tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
 
-
+# Split dataset
 train_size = 0.8
-train_dataset=data.sample(frac=train_size,random_state=200)
-test_dataset=data.drop(train_dataset.index).reset_index(drop=True)
+train_dataset = data.sample(frac=train_size, random_state=200)
+test_dataset = data.drop(train_dataset.index).reset_index(drop=True)
 train_dataset = train_dataset.reset_index(drop=True)
 
-
+# Create Dataset objects
 training_set = TestDataSet(train_dataset, tokenizer, MAX_LEN)
 testing_set = TestDataSet(test_dataset, tokenizer, MAX_LEN)
 
-train_params = {'batch_size': TRAIN_BATCH_SIZE,
-                'shuffle': True,
-                'num_workers': 0
-                }
-
-test_params = {'batch_size': VALID_BATCH_SIZE,
-                'shuffle': True,
-                'num_workers': 0
-                }
+# DataLoader parameters
+train_params = {'batch_size': TRAIN_BATCH_SIZE, 'shuffle': True, 'num_workers': 0}
+test_params = {'batch_size': VALID_BATCH_SIZE, 'shuffle': True, 'num_workers': 0}
 
 training_loader = DataLoader(training_set, **train_params)
 testing_loader = DataLoader(testing_set, **test_params)
 
+# Model setup
 model = DistillBERTClass()
 model.to(device)
 loss_function = torch.nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(params =  model.parameters(), lr=LEARNING_RATE)
+optimizer = torch.optim.Adam(params=model.parameters(), lr=LEARNING_RATE)
 
+
+# Helper function to calculate accuracy
 def calcuate_accu(big_idx, targets):
-    n_correct = (big_idx==targets).sum().item()
+    n_correct = (big_idx == targets).sum().item()
     return n_correct
 
 
-# Defining the training function on the 80% of the dataset for tuning the distilbert model
-
+# Training function
 def train(epoch):
     tr_loss = 0
     n_correct = 0
@@ -125,7 +123,7 @@ def train(epoch):
         nb_tr_steps += 1
         nb_tr_examples += targets.size(0)
 
-        if _ % 100 == 0:
+        if _ % 100 == 0 and nb_tr_examples > 0:
             loss_step = tr_loss / nb_tr_steps
             accu_step = (n_correct * 100) / nb_tr_examples
             print(f"Training Loss per 100 steps: {loss_step}")
@@ -133,26 +131,17 @@ def train(epoch):
 
         optimizer.zero_grad()
         loss.backward()
-        # # When using GPU
         optimizer.step()
 
-    print(f'The Total Accuracy for Epoch {epoch}: {(n_correct * 100) / nb_tr_examples}')
-    epoch_loss = tr_loss / nb_tr_steps
     epoch_accu = (n_correct * 100) / nb_tr_examples
-    print(f"Training Loss Epoch: {epoch_loss}")
-    print(f"Training Accuracy Epoch: {epoch_accu}")
-
+    print(f"Epoch {epoch} - Training Accuracy: {epoch_accu:.2f}%, Loss: {tr_loss / nb_tr_steps:.4f}")
     return
 
-for epoch in range(EPOCHS):
-    train(epoch)
 
-
+# Validation function
 def valid(model, testing_loader):
     model.eval()
     n_correct = 0
-    n_wrong = 0
-    total = 0
     tr_loss = 0
     nb_tr_steps = 0
     nb_tr_examples = 0
@@ -161,7 +150,7 @@ def valid(model, testing_loader):
             ids = data['ids'].to(device, dtype=torch.long)
             mask = data['mask'].to(device, dtype=torch.long)
             targets = data['targets'].to(device, dtype=torch.long)
-            outputs = model(ids, mask).squeeze()
+            outputs = model(ids, mask)
             loss = loss_function(outputs, targets)
             tr_loss += loss.item()
             big_val, big_idx = torch.max(outputs.data, dim=1)
@@ -170,20 +159,17 @@ def valid(model, testing_loader):
             nb_tr_steps += 1
             nb_tr_examples += targets.size(0)
 
-            if _ % 100 == 0:
-                loss_step = tr_loss / nb_tr_steps
-                accu_step = (n_correct * 100) / nb_tr_examples
-                print(f"Validation Loss per 100 steps: {loss_step}")
-                print(f"Validation Accuracy per 100 steps: {accu_step}")
-    epoch_loss = tr_loss / nb_tr_steps
     epoch_accu = (n_correct * 100) / nb_tr_examples
-    print(f"Validation Loss Epoch: {epoch_loss}")
-    print(f"Validation Accuracy Epoch: {epoch_accu}")
-
+    print(f"Validation Accuracy: {epoch_accu:.2f}%, Loss: {tr_loss / nb_tr_steps:.4f}")
     return epoch_accu
 
-print('This is the validation section to print the accuracy and see how it performs')
-print('Here we are leveraging on the dataloader crearted for the validation dataset, the approcah is using more of pytorch')
 
-acc = valid(model, testing_loader)
-print("Accuracy on test data = %0.2f%%" % acc)
+# Training loop
+for epoch in range(EPOCHS):
+    print(f"Starting Epoch {epoch + 1}/{EPOCHS}")
+    train(epoch)
+
+# Validation
+print("Evaluating model on test data...")
+accuracy = valid(model, testing_loader)
+print(f"Test Data Accuracy: {accuracy:.2f}%")

@@ -42,11 +42,18 @@ class InstaScrapper:
 
             with open(f"./dataScrappedFromSocialMedia/Text/Instagram.txt", "w", encoding='utf-8') as f:
                 f.write(text)
-            shutil.rmtree(dir_path)
 
         except PermissionError:
             print("Error: You do not have permission to delete some files.")
         except Exception as e:
             print(f"An error occurred: {e}")
+        finally:
+            # Ensure the directory is deleted at the end of processing
+            if os.path.exists(dir_path):
+                try:
+                    shutil.rmtree(dir_path)
+                    print(f"Deleted the temporary directory: {dir_path}")
+                except Exception as e:
+                    print(f"An error occurred while deleting the directory: {e}")
 
 
