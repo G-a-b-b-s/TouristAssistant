@@ -1,10 +1,6 @@
 document.getElementById('touristForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent form submission
 
-    // Collecting form data
-    const name = document.getElementById('name').value;
-    const duration = document.getElementById('duration').value;
-    const startDate = document.getElementById('startDate').value;
 
     // Get selected tourist type
     const touristType = document.querySelector('input[name="touristType"]:checked');
@@ -16,12 +12,9 @@ document.getElementById('touristForm').addEventListener('submit', function(event
 
     // Create an object to hold the collected data
     const formData = {
-        name: name,
-        duration: duration,
-        startDate: startDate,
         touristType: touristType.value
     };
-
+    console.log('Form data:', formData);
     // Send the data to the server using Fetch API
     fetch('/save-tourist-data', {
         method: 'POST',
