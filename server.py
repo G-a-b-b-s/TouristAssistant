@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, jsonify, session
 
 from Pathfinding.PointOfInterest import POI
 from Pathfinding.Itinerary import Itinerary
+from Pathfinding.Locations import Locations
 from Scrappers.InstaScrapper import InstaScrapper
 from Scrappers.TwitterScraper import TwitterScrapper
 
@@ -49,8 +50,9 @@ def itinerary(num_of_days: int):
     POIs = []
     for entry in data['tourist_attractions']:
         POIs.append(POI(entry['name'], entry['type'], entry['position']['latitude'], entry['position']['longitude'], entry['tags']))
-    it = Itinerary(POIs, num_of_days)
-    return it.to_json()
+    locations = Locations(POIs)
+    daily_sets = locations.get_daily_sets(num_of_days)
+    return Locations.daily_sets_to_json(daily_sets)
 
 @app.route('/save-username-twitter', methods=['POST'])
 def save_username_twitter():

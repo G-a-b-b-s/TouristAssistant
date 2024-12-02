@@ -64,15 +64,6 @@
             "tags": ["park", "nature", "walking", "scenic"]
         },
         {
-            "name": "Wieliczka Salt Mine",
-            "type": "Natural Site",
-            "position": {
-                "latitude": 49.983056,
-                "longitude": 20.055000
-            },
-            "tags": ["salt mine", "UNESCO", "underground", "tour"]
-        },
-        {
             "name": "Jagiellonian University",
             "type": "Historical Site",
             "position": {
@@ -98,15 +89,6 @@
                 "longitude": 19.937222
             },
             "tags": ["UNESCO", "historical", "walking", "architecture"]
-        },
-        {
-            "name": "Benedictine Abbey in Tyniec",
-            "type": "Monastery",
-            "position": {
-                "latitude": 50.009778,
-                "longitude": 19.798833
-            },
-            "tags": ["monastery", "religion", "history", "scenic"]
         },
         {
             "name": "Museum of Contemporary Art in Kraków (MOCAK)",
@@ -157,8 +139,8 @@
             "name": "Krakus Mound",
             "type": "Historical Monument",
             "position": {
-                "latitude": 50.041631,
-                "longitude": 19.961250
+                "latitude": 50.038056,
+                "longitude": 19.958333 
             },
             "tags": ["monument", "ancient", "viewpoint", "history"]
         },
