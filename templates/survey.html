@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formularz Turysty</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="../static/js/survey.js" defer></script>
+    <link rel="stylesheet" href="../static/css/survey.css">
+</head>
+<body>
+<div class="full-page-container container-fluid text-center py-5" id="formularz">
+    <h1>Kwestionariusz Typu Turysty</h1>
+    <p>Odpowiedz na poniższe pytania, aby dowiedzieć się, który typ turysty najlepiej Cię opisuje.</p>
+
+    <form id="touristTypeForm">
+        <div class="question p-3">
+            <h2>1. Jakie aktywności preferujesz podczas podróży?</h2>
+            <label><input type="radio" name="q1" value="cultural"> Zwiedzanie muzeów i galerii</label><br>
+            <label><input type="radio" name="q1" value="sport"> Aktywność fizyczna, np. bieganie</label><br>
+            <label><input type="radio" name="q1" value="entertainment"> Życie nocne, restauracje</label>
+        </div>
+
+        <div class="question p-3">
+            <h2>2. Co wybierasz na wieczór?</h2>
+            <label><input type="radio" name="q2" value="cultural"> Wystawa w galerii</label><br>
+            <label><input type="radio" name="q2" value="sport"> Trening na siłowni</label><br>
+            <label><input type="radio" name="q2" value="entertainment"> Kolacja w restauracji</label>
+        </div>
+
+        <div class="question p-3">
+            <h2>3. Jak spędzasz wolny weekend?</h2>
+            <label><input type="radio" name="q3" value="cultural"> Zwiedzanie zabytków</label><br>
+            <label><input type="radio" name="q3" value="sport"> Wycieczka rowerowa</label><br>
+            <label><input type="radio" name="q3" value="entertainment"> Wypad do klubu</label>
+        </div>
+
+
+        <div class="question p-3">
+            <h2>4. Co najbardziej cenisz w podróżach?</h2>
+            <label><input type="radio" name="q4" value="cultural"> Poznawanie historii i sztuki</label><br>
+            <label><input type="radio" name="q4" value="sport"> Możliwość ruchu i aktywności</label><br>
+            <label><input type="radio" name="q4" value="entertainment"> Spotkania i zabawa</label>
+        </div>
+
+        <div class="question p-3">
+            <h2>5. Ulubiony cel podróży?</h2>
+            <label><input type="radio" name="q5" value="cultural"> Miasto z bogatą historią</label><br>
+            <label><input type="radio" name="q5" value="sport"> Góry lub jeziora</label><br>
+            <label><input type="radio" name="q5" value="entertainment"> Miejsca z bogatym życiem nocnym</label>
+        </div>
+
+        <div class="question p-3">
+            <h2>6. Jaki rodzaj pamiątek przywozisz z podróży?</h2>
+            <label><input type="radio" name="q6" value="cultural"> Książki, obrazy, reprodukcje dzieł sztuki</label><br>
+            <label><input type="radio" name="q6" value="sport"> Sprzęt sportowy lub akcesoria</label><br>
+            <label><input type="radio" name="q6" value="entertainment"> Zdjęcia z imprez lub zabawne gadżety</label>
+        </div>
+
+        <div class="question p-3">
+            <h2>7. Jak wybierasz miejsce na nocleg?</h2>
+            <label><input type="radio" name="q7" value="cultural"> Blisko centrum miasta, gdzie znajdują się
+                zabytki</label><br>
+            <label><input type="radio" name="q7" value="sport"> W pobliżu natury lub obiektów sportowych</label><br>
+            <label><input type="radio" name="q7" value="entertainment"> Blisko klubów i restauracji</label>
+        </div>
+
+        <div class="question p-3">
+            <h2>8. Jaka atrakcja jest dla Ciebie najważniejsza?</h2>
+            <label><input type="radio" name="q8" value="cultural"> Zamek lub muzeum</label><br>
+            <label><input type="radio" name="q8" value="sport"> Stadion lub szlak rowerowy</label><br>
+            <label><input type="radio" name="q8" value="entertainment"> Kino, teatr, klub nocny</label>
+        </div>
+
+        <div class="question p-3">
+            <h2>9. Jakie zdjęcia robisz podczas podróży?</h2>
+            <label><input type="radio" name="q9" value="cultural"> Zabytki, galerie sztuki</label><br>
+            <label><input type="radio" name="q9" value="sport"> Aktywność fizyczna, krajobrazy</label><br>
+            <label><input type="radio" name="q9" value="entertainment"> Selfie z przyjaciółmi, życie nocne</label>
+        </div>
+
+        <div class="question p-3">
+            <h2>10. Gdzie chciałbyś spędzić idealny urlop?</h2>
+            <label><input type="radio" name="q10" value="cultural"> W mieście pełnym zabytków i historii</label><br>
+            <label><input type="radio" name="q10" value="sport"> Na obozie sportowym lub w górach</label><br>
+            <label><input type="radio" name="q10" value="entertainment"> W ośrodku z bogatym życiem nocnym</label>
+        </div>
+
+        <button type="submit" class="submit-btn">Prześlij</button>
+
+    </form>
+</div>
+</body>
+</html>

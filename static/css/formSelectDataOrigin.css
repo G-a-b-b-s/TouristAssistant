@@ -2,7 +2,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    color:white;
+    color: white;
 }
 
 .full-page-container {
@@ -28,10 +28,18 @@ h2 {
 .btn-primary {
     background-color: #c699af;
 }
-img{
-    width:20%;
+
+img {
+    width: 20%;
 }
-a{
-    color:white;
+
+a {
+    color: white;
     text-decoration: none;
+}
+
+.tick {
+    color: green;
+    font-weight: bold;
+    display: none;
 }

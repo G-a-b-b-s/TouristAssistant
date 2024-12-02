@@ -1,42 +1,48 @@
-document.getElementById('touristForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form submission
+document.addEventListener('DOMContentLoaded', function () {
+    // Function to update the UI
+    function updateUI(dataState) {
+        // Update checkmarks
+        for (const key in dataState) {
+            const tickElement = document.getElementById(`${key}-tick`);
+            if (dataState[key]) {
+                tickElement.style.display = 'inline';
+            } else {
+                tickElement.style.display = 'none';
+            }
+        }
 
-    // Collecting form data
-    const name = document.getElementById('name').value;
-    const duration = document.getElementById('duration').value;
-    const startDate = document.getElementById('startDate').value;
-
-    // Get selected tourist type
-    const touristType = document.querySelector('input[name="touristType"]:checked');
-
-    if (!touristType) {
-        alert('Proszę wybrać typ turysty!');
-        return;
+        // Show or hide the button
+        const button = document.getElementById('checkNowButton');
+        const isAnyDataCollected = Object.values(dataState).some(value => value);
+        button.style.display = isAnyDataCollected ? 'inline-block' : 'none';
     }
 
-    // Create an object to hold the collected data
-    const formData = {
-        name: name,
-        duration: duration,
-        startDate: startDate,
-        touristType: touristType.value
-    };
+    // Fetch the data state from the server
+    fetch('/get-data-state')
+        .then(response => response.json())
+        .then(dataState => {
+            updateUI(dataState);
+        });
 
-    // Send the data to the server using Fetch API
-    fetch('/save-tourist-data', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert('Dziękujemy za wypełnienie formularza! Twoje dane zostały zapisane.');
-    })
-    .catch(error => {
-        alert('Dziękujemy za wypełnienie formularza! Twoje dane zostały zapisane.');
-
-        console.error('Error:', error);
+    // Simulate data collection on click
+    document.querySelectorAll('.page-link').forEach(link => {
+        link.addEventListener('click', function (event) {
+            const page = event.target.dataset.page;
+            if (page) {
+                fetch('/get-data-state')
+                    .then(response => response.json())
+                    .then(dataState => {
+                        dataState[page] = true; // Simulate data collection
+                        fetch('/save-data-state', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify(dataState),
+                        })
+                        .then(() => {
+                            updateUI(dataState);
+                        });
+                    });
+            }
+        });
     });
 });
