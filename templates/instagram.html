@@ -10,11 +10,17 @@
     <link rel="stylesheet" href="../static/css/instagram.css">
 </head>
 <body>
-    <div class="full-page-container container-fluid text-center py-5">
-        <img src="../static/img/instaText.png">
-        <p>Podaj swoją nazwę użytkownika!</p>
-        <input type="text"  id="username" placeholder="Nazwa użytkownika">
-        <button id="submitBtn" class="btn btn-primary mt-3">Submit</button>
+<div class="full-page-container container-fluid text-center py-5">
+    <img src="../static/img/instaText.png">
+    <p>Podaj swoją nazwę użytkownika!</p>
+    <input type="text" id="username" placeholder="Nazwa użytkownika">
+    <button id="submitBtn" class="btn btn-primary mt-3">Submit</button>
+    <div id="progressContainer" class="mt-3" style="display: none; width: 100%; max-width: 400px; margin: auto;">
+        <div class="progress">
+            <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated custom-progress-bar" role="progressbar"
+                 style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
     </div>
+</div>
 </body>
 </html>

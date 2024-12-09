@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Show or hide the button
         const button = document.getElementById('checkNowButton');
         const isAnyDataCollected = Object.values(dataState).some(value => value);
-        button.style.display = isAnyDataCollected ? 'inline-block' : 'none';
+        button.style.display = 'inline-block'; // Always make it visible
+        button.disabled = !isAnyDataCollected;
     }
 
     // Fetch the data state from the server
@@ -24,22 +25,24 @@ document.addEventListener('DOMContentLoaded', function () {
             updateUI(dataState);
         });
 
-    // Simulate data collection on click
+    // Handle click events on links
     document.querySelectorAll('.page-link').forEach(link => {
         link.addEventListener('click', function (event) {
-            const page = event.target.dataset.page;
+            event.preventDefault(); // Temporarily prevent navigation
+            const page = this.dataset.page; // Use `this` to get the correct element
             if (page) {
                 fetch('/get-data-state')
                     .then(response => response.json())
                     .then(dataState => {
-                        dataState[page] = true; // Simulate data collection
+                        dataState[page] = true; // Update the clicked page state
                         fetch('/save-data-state', {
                             method: 'POST',
-                            headers: {'Content-Type': 'application/json'},
+                            headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify(dataState),
-                        })
-                        .then(() => {
+                        }).then(() => {
                             updateUI(dataState);
+                            // Navigate to the page after saving the state
+                            window.location.href = this.href; // Use the `href` attribute of the link
                         });
                     });
             }

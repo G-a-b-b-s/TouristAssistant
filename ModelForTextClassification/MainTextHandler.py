@@ -23,4 +23,6 @@ for line in text.split('\n'):
         english_sentence = ToEnglishConverter(line, language)
         line = english_sentence
 
-#llama-3
+#classify the text
+
+

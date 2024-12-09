@@ -38,12 +38,14 @@ def map():
 @app.route('/save-data-state', methods=['POST'])
 def save_data_state():
     data = request.get_json()
+    app.logger.debug(f"Saving data state: {data}")
     session['dataState'] = data
     return jsonify({'message': 'Data state saved successfully!'}), 200
 
 @app.route('/get-data-state', methods=['GET'])
 def get_data_state():
     data_state = session.get('dataState', {'chatBot': False, 'instagram': False, 'survey': False})
+    app.logger.debug(f"Retrieving data state: {data_state}")
     return jsonify(data_state), 200
 
 
@@ -72,8 +74,18 @@ def itinerary(num_of_days: int):
     locations = Locations(POIs)
     daily_sets = locations.get_daily_sets(num_of_days)
     return Locations.daily_sets_to_json(daily_sets)
+@app.route('/save-chatbot-data', methods=['POST'])
+def save_chatbot_data():
+    try:
+        # Get the JSON data sent from the client
+        form_data = request.get_json()
+        chatbot_type = form_data.get("touristType")
+        session['chatbot'] = tourist_type
+        return jsonify({"message": "Your profile has been analysed!"}), 200  # Respond with success
 
-
+    except Exception as e:
+        # Handle any errors and return a 500 response
+        return jsonify({"error": str(e)}), 500
 @app.route('/save-instagram-username', methods=['POST'], endpoint='save_instagram_username')
 def save_username_instagram():
     try:
@@ -93,6 +105,8 @@ def save_username_instagram():
     except Exception as e:
         # Handle any errors and return a 500 response
         return jsonify({"error": str(e)}), 500
+
+
 @app.route('/save-survey-data', methods=['POST'])
 def save_survey_data():
     try:
@@ -105,6 +119,8 @@ def save_survey_data():
     except Exception as e:
         # Handle any errors and return a 500 response
         return jsonify({"error": str(e)}), 500
+
+
 @app.route('/get-instagram-data', methods=['GET'])
 def get_instagram_data():
     instagram_data = session.get('instagram_data', {})
@@ -114,6 +130,10 @@ def get_instagram_data():
 def get_survey_data():
     survey_data = session.get('survey', {})
     return jsonify(survey_data), 200
+@app.route('/get-chatbot-data', methods=['GET'])
+def get_chatbot_data():
+    chatbot_data = session.get('chatbot', {})
+    return jsonify(chatbot_data), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
