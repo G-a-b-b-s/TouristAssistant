@@ -12,7 +12,7 @@ class DistillBERTClass(torch.nn.Module):
         self.l1 = DistilBertModel.from_pretrained("distilbert-base-uncased")
         self.pre_classifier = torch.nn.Linear(768, 768)
         self.dropout = torch.nn.Dropout(0.3)
-        self.classifier = torch.nn.Linear(768, 9)
+        self.classifier = torch.nn.Linear(768, 3)
 
     def forward(self, input_ids, attention_mask):
         output_1 = self.l1(input_ids=input_ids, attention_mask=attention_mask)
@@ -23,9 +23,12 @@ class DistillBERTClass(torch.nn.Module):
         pooler = self.dropout(pooler)
         output = self.classifier(pooler)
         return output
+label_mapping = {
+    'sports': 0,
+    'culture': 1,
+    'enterntainment': 2
+}
 
-
-# Dataset class
 class TestDataSet(Dataset):
     def __init__(self, dataframe, tokenizer, max_len):
         self.len = len(dataframe)
@@ -47,23 +50,23 @@ class TestDataSet(Dataset):
         )
         ids = inputs['input_ids']
         mask = inputs['attention_mask']
+        label = label_mapping[self.data.label[index]]  # Convert label to integer
 
         return {
             'ids': torch.tensor(ids, dtype=torch.long),
             'mask': torch.tensor(mask, dtype=torch.long),
-            'targets': torch.tensor(self.data.label[index], dtype=torch.long)
+            'targets': torch.tensor(label, dtype=torch.long)
         }
 
     def __len__(self):
         return self.len
-
 
 # Check device compatibility
 from torch import cuda
 device = 'cuda' if cuda.is_available() else 'cpu'
 
 # Load dataset
-data = pd.read_csv('../data/text/CumulatedTable.csv')
+data = pd.read_csv('combined.csv')
 
 MAX_LEN = 512
 TRAIN_BATCH_SIZE = 4
@@ -126,15 +129,12 @@ def train(epoch):
         if _ % 100 == 0 and nb_tr_examples > 0:
             loss_step = tr_loss / nb_tr_steps
             accu_step = (n_correct * 100) / nb_tr_examples
-            print(f"Training Loss per 100 steps: {loss_step}")
-            print(f"Training Accuracy per 100 steps: {accu_step}")
 
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
 
     epoch_accu = (n_correct * 100) / nb_tr_examples
-    print(f"Epoch {epoch} - Training Accuracy: {epoch_accu:.2f}%, Loss: {tr_loss / nb_tr_steps:.4f}")
     return
 
 
@@ -160,16 +160,17 @@ def valid(model, testing_loader):
             nb_tr_examples += targets.size(0)
 
     epoch_accu = (n_correct * 100) / nb_tr_examples
-    print(f"Validation Accuracy: {epoch_accu:.2f}%, Loss: {tr_loss / nb_tr_steps:.4f}")
     return epoch_accu
 
 
 # Training loop
 for epoch in range(EPOCHS):
-    print(f"Starting Epoch {epoch + 1}/{EPOCHS}")
     train(epoch)
 
 # Validation
-print("Evaluating model on test data...")
 accuracy = valid(model, testing_loader)
-print(f"Test Data Accuracy: {accuracy:.2f}%")
+
+save_directory="."
+model_save_path = os.path.join(save_directory, 'classification_model.pth')
+torch.save(model.state_dict(), model_save_path)
+print(f"Model saved to {model_save_path}")
