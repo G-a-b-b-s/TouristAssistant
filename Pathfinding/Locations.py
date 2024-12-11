@@ -3,9 +3,11 @@ from datetime import datetime
 import asyncio
 import json
 
+import googlemaps.distance_matrix
 import requests
 from numpy import argmin
 from traveltimepy import TravelTimeSdk, Location, Coordinates, CyclingPublicTransport, Property
+import googlemaps
 
 from Pathfinding.PointOfInterest import POI
 
@@ -42,14 +44,39 @@ class Locations:
         self.pois = pois
         self.ids = []
         self.opening_hours = []
-        self.get_place_ids()
+        self.matrix = [[0 for _ in range(len(self.pois))]
+            for _ in range(len(self.pois))]
+        # self.get_place_ids()
         self.get_opening_hours()
-        asyncio.run(self.fetch_distance())
+        self.get_distance_matrix()
+        # asyncio.run(self.fetch_distance())
+    
+    def get_distance_matrix(self):
+        origins = [x.id for x in self.pois]
+        destinations = [x.id for x in self.pois]
+        url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins="
+        url += f"place_id:{origins[0]}"
+        for id in origins[1:]:
+            url += f"|place_id:{id}"
+        url += "&destinations="
+        url += f"place_id:{destinations[0]}"
+        for id in destinations[1:]:
+            url += f"|place_id:{id}"
+        url += f"&key={GOOGLE_API_KEY}"
+        result = requests.get(url)
+        if result.status_code == 200:
+            data = result.json()
+            for i, row in enumerate(data['rows']):
+                for j, value in enumerate(row['elements']):
+                    # if value['status'] == 'OK':
+                    self.matrix[i][j] = int(value['duration']['value']) if value['status'] == 'OK' else float('inf')
+        else:
+            print("Distance matrix error")
         
 
     async def fetch_distance(self):
         sdk = TravelTimeSdk(APP_ID, API_KEY)
-        
+
         locations: List[Location] = []
         for poi in self.pois:
             locations.append(Location(id=poi.name, coords=Coordinates(lat=poi.latitude, lng=poi.longitude)))

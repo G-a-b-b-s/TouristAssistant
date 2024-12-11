@@ -1,12 +1,15 @@
 from typing import List
 
 class POI:
-    def __init__(self, name: str, type: str, latitude: float, longitude: float, tags: List[str]):
+    def __init__(self, id: int, name: str, type: str, latitude: float, longitude: float, tags: List[str], hour: int | None = None, minute: int | None = None):
+        self.id = id
         self.name = name
         self.type = type
         self.latitude = latitude
         self.longitude = longitude
         self.tags = tags
+        self.hour = hour
+        self.minute = minute
     
     def __eq__(self, value):
         if isinstance(value, POI):
@@ -21,11 +24,16 @@ class POI:
     
     def to_json(self):
         return {
+            'id': self.id,
             'name': self.name,
             'type': self.type,
             'position': {
                 'latitude': self.latitude,
                 'longitude': self.longitude
             },
-            'tags': self.tags
+            'tags': self.tags,
+            'time': {
+                'hour': self.hour,
+                'minute': self.minute
+            }
         }

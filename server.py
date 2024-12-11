@@ -1,13 +1,16 @@
 import json
 from flask import Flask, render_template, request, jsonify, session
+from flask_cors import CORS
 
 from Pathfinding.PointOfInterest import POI
 from Pathfinding.Itinerary import Itinerary
 from Pathfinding.Locations import Locations
 from Scrappers.InstaScrapper import InstaScrapper
+from Scrappers.POIScrapper import POIScrapper
 
 app = Flask(__name__)
-app.secret_key = 'turysta'
+CORS(app)
+# app.secret_key = 'turysta'
 
 tourist_type={}
 
@@ -63,6 +66,18 @@ def save_tourist_data():
         json.dump(data, file)
 
     return 'Data saved successfully!'
+
+@app.get('/locations/')
+def locations():
+    city_name = request.args.get('city-name')
+    num_of_days = int(request.args.get('num-of-days'))
+    tourist_type = request.args.get('tourist-type')
+    scr = POIScrapper(tourist_type)
+    pois = scr.get_POIs(city_name, num_of_days)
+    locations = Locations(pois)
+    daily_sets = locations.get_daily_sets(num_of_days)
+    return Locations.daily_sets_to_json(daily_sets)
+
 
 @app.get('/itinerary/<int:num_of_days>')
 def itinerary(num_of_days: int):
