@@ -2,6 +2,8 @@ import json
 from flask import Flask, render_template, request, jsonify, session
 from flask_cors import CORS
 
+from datetime import date
+
 from Pathfinding.PointOfInterest import POI
 from Pathfinding.Itinerary import Itinerary
 from Pathfinding.Locations import Locations
@@ -72,11 +74,13 @@ def locations():
     city_name = request.args.get('city-name')
     num_of_days = int(request.args.get('num-of-days'))
     tourist_type = request.args.get('tourist-type')
+    print(request.args.to_dict())
+    start_date = date.fromisoformat(request.args.get('start-date'))
     scr = POIScrapper(tourist_type)
     pois = scr.get_POIs(city_name, num_of_days)
-    locations = Locations(pois)
+    locations = Locations(pois, start_date)
     daily_sets = locations.get_daily_sets(num_of_days)
-    return Locations.daily_sets_to_json(daily_sets)
+    return locations.daily_sets_to_json(daily_sets)
 
 
 @app.get('/itinerary/<int:num_of_days>')

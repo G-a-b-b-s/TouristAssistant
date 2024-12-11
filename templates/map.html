@@ -18,12 +18,15 @@
         <div id="side">
             <form id="form" action="/locations" method="GET">
                 <label for="city-name">City name</label>
-                <input id="city-name" name="city-name" type="text">
+                <input id="city-name" name="city-name" type="text" required>
                 <br>
                 <label for="num-of-days">Number of days:</label>
-                <input id="num-of-days" name="num-of-days" type="text" value="3">
+                <input id="num-of-days" name="num-of-days" type="text" value="3" required>
                 <br>
-                <select id="tourist-type" name="tourist-type">
+                <label for="start-date"></label>
+                <input id="start-date" name="start-date" type="date" required>
+                <br>
+                <select id="tourist-type" name="tourist-type" required>
                     <option value="cultural">Cultural</option>
                     <option value="sport">Sport</option>
                     <option value="entertainment">Entertainment</option>

@@ -5,6 +5,7 @@ import json
 
 import googlemaps.distance_matrix
 import requests
+from math import ceil
 from numpy import argmin
 from traveltimepy import TravelTimeSdk, Location, Coordinates, CyclingPublicTransport, Property
 import googlemaps
@@ -40,8 +41,9 @@ class Locations:
     opening_hours = []
     matrix: List[List[int]]
 
-    def __init__(self, pois: List[POI]):
+    def __init__(self, pois: List[POI], start_date):
         self.pois = pois
+        self.start_date = start_date
         self.ids = []
         self.opening_hours = []
         self.matrix = [[0 for _ in range(len(self.pois))]
@@ -51,9 +53,9 @@ class Locations:
         self.get_distance_matrix()
         # asyncio.run(self.fetch_distance())
     
-    def get_distance_matrix(self):
-        origins = [x.id for x in self.pois]
-        destinations = [x.id for x in self.pois]
+    def distance_matrix_part(self, x_pois, y_pois, x_offset, y_offset):
+        origins = [x.id for x in x_pois]
+        destinations = [x.id for x in y_pois]
         url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins="
         url += f"place_id:{origins[0]}"
         for id in origins[1:]:
@@ -66,12 +68,28 @@ class Locations:
         result = requests.get(url)
         if result.status_code == 200:
             data = result.json()
-            for i, row in enumerate(data['rows']):
-                for j, value in enumerate(row['elements']):
-                    # if value['status'] == 'OK':
-                    self.matrix[i][j] = int(value['duration']['value']) if value['status'] == 'OK' else float('inf')
+            if data['status'] == 'OK':
+                for i, row in enumerate(data['rows']):
+                    for j, value in enumerate(row['elements']):
+                        self.matrix[i + x_offset][j + y_offset] = int(value['duration']['value']) if value['status'] == 'OK' else float('inf')
+            else:
+                print(f'Distance matrix error: {data["status"]}')
         else:
-            print("Distance matrix error")
+            print("Distance matrix error: API request failed")
+        # print(self.matrix)
+
+    def get_distance_matrix(self):
+        length = len(self.pois)
+        pois_parts = ceil(length / 8)
+        for x in range(0, pois_parts):
+            for y in range(0, pois_parts):
+                x_offset = x * 5
+                y_offset = y * 5
+                self.distance_matrix_part(
+                    self.pois[x_offset:(x_offset + 5)],
+                    self.pois[y_offset:(y_offset + 5)],
+                    x_offset,
+                    y_offset)
         
 
     async def fetch_distance(self):
@@ -141,6 +159,7 @@ class Locations:
 
     def get_daily_sets(self, num_of_days: int) -> List[List[POI]]:
         included = set()
+        times = []
 
         result = []
 
@@ -149,8 +168,11 @@ class Locations:
         included.add(current)
         for _ in range(num_of_days):
             daily = []
+            daily_times = []
             while True:
                 daily.append(current)
+                daily_times.append(sum_time)
+
                 distances = [x for x in self.matrix[current]]
                 for x in included:
                     distances[x] = float('inf')
@@ -165,16 +187,28 @@ class Locations:
                     sum_time = 0
                     break
             result.append(daily)
+            times.append(daily_times)
         
         result_poi = []
         for daily_set in result:
             result_poi.append([self.pois[x] for x in daily_set])
+
+        for i, daily_set in enumerate(result_poi):
+            for j, poi in enumerate(daily_set):
+                times2 = times[i][j]
+                hour = 9 + times2 // 3600
+                minute = (times2 % 3600) // 60
+                minute = (minute // 15) * 15
+                poi.set_time(hour, minute)
         return result_poi
 
-    def daily_sets_to_json(daily_sets: List[List[POI]]):
-        result = []
+    def daily_sets_to_json(self, daily_sets: List[List[POI]]):
+        result = {
+            'start_date': self.start_date,
+            'content': []
+        }
         for day in daily_sets:
-            result.append([poi.to_json() for poi in day])
+            result['content'].append([poi.to_json() for poi in day])
         return result
 
 # with open('Pathfinding/POIs.json', 'r') as file:

@@ -10,6 +10,7 @@ const data = [];
 const routes = {};
 let markers = [];
 const centerCoords = { lat: 0, lng: 0 };
+let start_date;
 
 const days = document.getElementById('days');
 const list = document.getElementById('list');
@@ -17,12 +18,14 @@ const form = document.getElementById('form');
 const numOfDaysHandle = document.getElementById('num-of-days');
 const cityNameHandle = document.getElementById('city-name');
 const touristTypeHandle = document.getElementById('tourist-type');
+const startDateHandle = document.getElementById('start-date');
 
 const getData = async () => {
     const params = new URLSearchParams({
         "city-name": cityNameHandle.value,
         "num-of-days": numOfDaysHandle.value,
-        "tourist-type": touristTypeHandle.value
+        "tourist-type": touristTypeHandle.value,
+        "start-date": startDateHandle.value
     }).toString();
 
     await fetch('/locations/?' + params)
@@ -30,50 +33,35 @@ const getData = async () => {
         .then((json) => {
             // list.innerHTML = '';
             // let i = 0;
-            for (const day of json) {
+            start_date = json['start_date'];
+            for (const day of json['content']) {
                 const dailyList = [];
                 for (const poi of day) {
                     dailyList.push({
                         'lat': poi['position']['latitude'],
                         'lon': poi['position']['longitude'],
                         'name': poi['name'],
+                        'hour': poi['time']['hour'],
+                        'minute': poi['time']['minute'],
                         'id': poi['id']
                     });
                 }
                 data.push(dailyList);
             }
-
-            // for (const day of json) {
-            //     // const dailyList = document.createElement('ol');
-            //     // const header = document.createElement('h3');
-            //     // header.innerHTML = `Day ${i + 1}:`;
-            //     // dailyList.appendChild(header);
-                
-            //     const dailyList = [];
-            //     for (const poi of day) {
-            //         const { latitude, longitude } = poi['position'];
-            //         const name = poi['name'];
-            //         const { hour, minute } = poi['time'];
-
-            //         const item = document.createElement('li');
-            //         // item.innerHTML = `${hour}:${minute} - ${name}`;
-            //         item.innerHTML = name
-            //         // dailyList.appendChild(item);
-            //     }
-            //     // list.appendChild(dailyList);
-            //     i++;
-            // }
         });
 };
 
 const getRoute = (prev, next) => (event) => {
+    const currentDate = new Date(Date.now());
+    currentDate.setHours(prev['hour'], prev['minute']);
+
     const request = {
         origin: { lat: prev['lat'], lng: prev['lon'] },
         destination: { lat: next['lat'], lng: next['lon'] },
         travelMode: 'TRANSIT',
-        // transitOptions: {
-        // departureTime: new Date(), // Optionally set the departure time
-        // },
+        transitOptions: {
+            departureTime: currentDate
+        },
     };
 
     if (directionsRenderer != undefined) {
@@ -146,7 +134,9 @@ const changeDay = (i) => (event) => {
     let k = 0;
     data[i].forEach(x => {
         const li = document.createElement('li');
-        li.innerHTML = x.name;
+        const formattedHour = x.hour < 10 ? '0' + x.hour.toString() : x.hour.toString();
+        const formattedMinute = x.minute < 10 ? '0' + x.minute.toString() : x.minute.toString();
+        li.innerHTML = `${formattedHour}:${formattedMinute} ${x.name}`;
         if (k == 0) {
             li.addEventListener('click', () => {
                 // directionsRenderer.setDirections(null);
@@ -204,7 +194,9 @@ form.addEventListener('submit', async (event) => {
     let k = 0;
     data[0].forEach(x => {
         const li = document.createElement('li');
-        li.innerHTML = x.name;
+        const formattedHour = x.hour < 10 ? '0' + x.hour.toString() : x.hour.toString();
+        const formattedMinute = x.minute < 10 ? '0' + x.minute.toString() : x.minute.toString();
+        li.innerHTML = `${formattedHour}:${formattedMinute} ${x.name}`;
         if (k == 0) {
             li.addEventListener('click', () => {
                 // directionsRenderer.setDirections(null);
