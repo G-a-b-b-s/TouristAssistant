@@ -23,6 +23,7 @@ class DistillBERTClass(torch.nn.Module):
         pooler = self.dropout(pooler)
         output = self.classifier(pooler)
         return output
+
 label_mapping = {
     'sports': 0,
     'culture': 1,
@@ -66,7 +67,7 @@ from torch import cuda
 device = 'cuda' if cuda.is_available() else 'cpu'
 
 # Load dataset
-data = pd.read_csv('combined.csv')
+data = pd.read_csv('ModelForTextClassification/trainingData/combined.csv')
 
 MAX_LEN = 512
 TRAIN_BATCH_SIZE = 4

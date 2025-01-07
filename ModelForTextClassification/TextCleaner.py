@@ -35,5 +35,4 @@ class TextCleaner():
         cleaned_text = self.remove_hashed_words(text)
         cleaned_text = self.remove_ats_and_numbers(cleaned_text)
         cleaned_text = self.remove_empty_lines(cleaned_text)
-
         return cleaned_text
