@@ -4,6 +4,7 @@ from flask_cors import CORS
 
 from datetime import date
 
+#from ModelForTextClassification.MainTextHandler import PostTextContentAnalyzer
 from Pathfinding.PointOfInterest import POI
 from Pathfinding.Itinerary import Itinerary
 from Pathfinding.Locations import Locations
@@ -115,9 +116,14 @@ def save_username_instagram():
         if not username:
             return jsonify({"error": "Username is required"}), 400
 
-        insta_scrapper = InstaScrapper(username)
-        profile_data = {"username": username}
-        session['instagram_data'] = profile_data
+        # print(username)
+        # insta_scrapper = InstaScrapper(username)
+        # print("After scrapping")
+        #
+        # touristType = PostTextContentAnalyzer.get_tourist_type()
+        #
+        #
+        # session['instagram'] = touristType
 
         return jsonify({"message": "Your profile has been analysed!"}), 200  # Respond with success
 
@@ -149,6 +155,7 @@ def get_instagram_data():
 def get_survey_data():
     survey_data = session.get('survey', {})
     return jsonify(survey_data), 200
+
 @app.route('/get-chatbot-data', methods=['GET'])
 def get_chatbot_data():
     chatbot_data = session.get('chatbot', {})
