@@ -1,0 +1,11 @@
+Chatbot: Hi! I'd love to learn about your travel style. When you're on vacation, do you prefer spending your time in lively places like restaurants, bars, or clubs? Maybe you like to explore the local nightlife?
+
+User: Yes, I love going to trendy restaurants and exploring local nightlife. I usually try to visit a couple of bars or clubs during the evening.
+
+Chatbot: That’s awesome! So, would you say you enjoy experiencing a new city through its food and entertainment scene? Or do you find yourself seeking out specific kinds of events like concerts, movie screenings, or theater shows?
+
+User: Definitely! I’m always looking for local eateries and vibrant bars. I also enjoy going to the cinema or a local theater for a play or concert. It’s part of the experience!
+
+Chatbot: That’s amazing! How important is it for you to have a lively evening after a day of exploring? Do you prefer something more relaxed like a wine bar, or do you go for the party scene with music and dancing?
+
+User: Oh, it’s a big part of my trip! I love a mix of things – one night I might go to a chill wine bar, but other times, I love dancing and hitting up a high-energy club with good music.

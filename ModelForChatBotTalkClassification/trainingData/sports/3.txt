@@ -1,0 +1,12 @@
+Chatbot: Hello! When you plan a trip, are you more interested in exploring active experiences like fitness centers, sports fields, or biking trails?
+
+User: Yes, that’s exactly my thing! I love staying active while I travel, so I always look for places with great hiking trails, good cycling paths, or places to try new sports.
+
+Chatbot: It sounds like you enjoy a good challenge! How about water sports? Do you like to try surfing, diving, or anything similar when you’re at the beach?
+
+User: I absolutely love water sports! Surfing is something I try to do every time I’m near the coast, and if there’s an opportunity for diving, I’ll take it. It’s a great way to stay active and enjoy the outdoors.
+
+Chatbot: That sounds amazing! Do you prefer to watch live sports as well? Like attending a major game or event in a different city?
+
+User: Yes! Watching live sports is a huge part of my travels. I try to catch at least one major sporting event while I’m traveling, whether it’s a soccer match or a basketball game.
+

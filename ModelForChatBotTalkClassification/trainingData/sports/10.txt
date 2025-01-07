@@ -1,0 +1,11 @@
+Chatbot: Hey! When you travel, do you prefer destinations that offer a lot of outdoor physical activities, like skiing or mountain biking?
+
+User: Yes, definitely! I love being active while traveling. Skiing in the winter or mountain biking in the summer are some of my favorite things to do.
+
+Chatbot: That sounds amazing! What about water sports—do you enjoy activities like surfing or sailing when you’re near the coast?
+
+User: Absolutely! If I’m near the coast, I always try to find a place to surf. Sailing is also something I enjoy whenever I have the opportunity.
+
+Chatbot: That’s great! Are you also into sports events, like watching a local game or visiting sports arenas during your travels?
+
+User: Yes! I make it a point to check out any major sports events happening in the area. It’s a fun way to experience the local culture and get involved in the community.

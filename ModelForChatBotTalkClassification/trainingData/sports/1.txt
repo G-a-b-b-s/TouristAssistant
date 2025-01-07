@@ -1,0 +1,11 @@
+Chatbot: Hey there! When you travel, do you prefer to visit places with lots of opportunities for physical activities like running, cycling, or maybe even visiting sports stadiums?
+
+User: Definitely! I love staying active, so I always look for destinations that offer good trails for running or biking. Stadiums are also something I try to visit if there’s a game happening.
+
+Chatbot: That sounds like a great way to make the most of your trip! Are you into fitness as well? I’ve heard some travelers make use of hotel gyms or outdoor fitness parks to stay in shape while on vacation.
+
+User: Yes, I’m really into fitness! I try to keep up with my routine even when I’m traveling. Whether it’s a hotel gym, running in the morning, or finding a local park to work out in, I like to stay active.
+
+Chatbot: Wow, that's impressive! Do you enjoy any particular sports, like soccer, basketball, or even swimming? Maybe you seek out local games or matches to watch while you’re traveling?
+
+User: I’m a huge fan of soccer, so if I can catch a match while I’m traveling, that’s always on my list. Swimming is also something I enjoy, so I’ll look for places with great pools or beaches.

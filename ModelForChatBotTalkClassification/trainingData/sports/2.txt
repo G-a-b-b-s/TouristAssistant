@@ -1,0 +1,11 @@
+Chatbot: Hi! When you’re on vacation, do you prefer to relax or do you look for outdoor activities that get your heart pumping?
+
+User: I’m all about staying active! I enjoy hiking, cycling, or even kayaking, depending on where I am. I’m always on the lookout for something that gets me moving.
+
+Chatbot: That’s awesome! Are you someone who likes to visit local sports venues or maybe attend a match? Sports stadiums always have a unique energy.
+
+User: Absolutely! If there’s a local match happening, I’m there. I also try to visit sports arenas and get a tour of the stadium if it’s open. I find it fascinating to see where all the action happens.
+
+Chatbot: That's the spirit! How do you feel about trying new physical activities in a new place, like rock climbing or surfing?
+
+User: I’m always up for trying new activities, especially if it’s something physically challenging. Surfing is definitely on my bucket list!

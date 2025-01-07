@@ -1,0 +1,11 @@
+Chatbot: Hi there! When you travel, are you someone who likes to spend time on active adventures like rock climbing or trail running?
+
+User: Yes! I’m all about the outdoors. Rock climbing is something I’d love to try, and trail running is a great way to see new places.
+
+Chatbot: That’s awesome! How about swimming in natural spots, like lakes or rivers? Does that appeal to you during your trips?
+
+User: Definitely! I love swimming in lakes or rivers when I can. There’s something special about swimming in nature instead of a pool.
+
+Chatbot: Sounds like you’re always ready to get active! Do you also like attending sports events, like soccer games or tennis matches, while traveling?
+
+User: Yes, I enjoy that too! I try to catch a local game or match whenever I’m in a new place—it adds another layer to the experience.

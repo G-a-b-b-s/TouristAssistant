@@ -1,0 +1,11 @@
+Chatbot: Hey! When you’re on vacation, do you look for destinations that offer lots of active experiences, like running routes or fitness classes?
+
+User: Yes, I’m all about staying active while traveling. I usually try to find places with great running trails or gyms that I can use during my trip.
+
+Chatbot: That’s fantastic! What about activities like swimming or tennis—do you enjoy those as part of your trip?
+
+User: Definitely! Swimming is something I always try to do, especially in beautiful beaches or pools. I also love playing tennis when I get the chance.
+
+Chatbot: Sounds like you’re always on the move! Do you prefer participating in sports or watching live events when you travel?
+
+User: I love both! I definitely try to take part in sports like running or cycling, but I also enjoy watching a live game if I get the chance. It’s a great way to immerse myself in the local culture.

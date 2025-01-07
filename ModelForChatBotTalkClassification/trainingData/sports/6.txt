@@ -1,0 +1,11 @@
+Chatbot: Hey there! Are you someone who enjoys staying active on vacation, like taking part in cycling tours or going for a run in a new place?
+
+User: Absolutely! I enjoy biking or running to explore a city or its surroundings. It’s a great way to see new places while staying fit.
+
+Chatbot: That’s awesome! How do you feel about doing more physical sports while traveling, like kayaking or paddleboarding?
+
+User: I’m all for it! If I’m near water, I try to find a spot to go kayaking or paddleboarding. It’s so much fun and a great workout too.
+
+Chatbot: Sounds like a blast! Do you also like visiting sports arenas or attending games, like football, basketball, or even tennis tournaments when you travel?
+
+User: Yes, I love attending live sports events. I try to catch a game or tournament whenever I can. It adds another layer to the whole travel experience.

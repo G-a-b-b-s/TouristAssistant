@@ -1,0 +1,11 @@
+Chatbot: Hi there! When you’re planning your trips, do you tend to look for places where you can engage in outdoor activities like hiking or swimming?
+
+User: Yes, absolutely! I’m always looking for destinations with great hiking trails or spots where I can swim. I love combining travel with staying active.
+
+Chatbot: That’s great! What about fitness? Do you ever join fitness classes or visit gyms while you’re away?
+
+User: Definitely! I try to keep up with my workouts even while traveling. I always check if my hotel has a gym, or if there are outdoor fitness parks in the area.
+
+Chatbot: Nice! Do you prefer visiting places with sports stadiums or attending live sporting events as part of your travel experience?
+
+User: Yes! I love watching live sports whenever I travel. If there’s a match or event happening, I make it a point to go. It’s such a fun way to get into the local culture.

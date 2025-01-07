@@ -1,0 +1,12 @@
+Chatbot: Hi! When you travel, do you enjoy engaging in activities like hiking, mountain biking, or even zip-lining?
+
+User: Oh, definitely! I love being outdoors, especially for things like hiking or mountain biking. The more adventurous, the better!
+
+Chatbot: That’s awesome! How do you feel about sports like surfing or rock climbing when you visit coastal or mountainous destinations?
+
+User: I’m always up for trying new sports! If I’m by the coast, surfing is a must. And rock climbing? I’d love to try that in a mountainous area.
+
+Chatbot: Sounds like you really enjoy the physical challenge. Do you also like visiting stadiums or sports-related venues when you travel?
+
+User: Yes, I do! I always try to visit a sports stadium or complex if there’s one nearby. Whether it’s for a tour or just to watch a game, it’s always exciting!
+

@@ -1,0 +1,11 @@
+Chatbot: Hey there! Are you someone who likes to stay active even when you're on vacation?
+
+User: Absolutely! I always try to fit in some physical activity, like hiking, biking, or even running in a new city.
+
+Chatbot: That’s great! Do you enjoy exploring cities on foot or by bike rather than using public transport?
+
+User: Yes, I prefer biking around or going for a morning run to explore the area. It’s a great way to see the sights and stay active.
+
+Chatbot: Do you also enjoy visiting places with great outdoor spaces, like parks or beaches for water sports?
+
+User: Definitely! I love spending time outdoors, whether it’s hiking in nature or trying out water activities like kayaking or paddleboarding.

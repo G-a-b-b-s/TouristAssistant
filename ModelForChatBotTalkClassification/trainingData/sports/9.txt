@@ -1,0 +1,11 @@
+Chatbot: Hi! Are you someone who enjoys trying out physical activities like hiking or cycling when traveling to new places?
+
+User: Yes, I always try to get some physical activity in while traveling. Whether it’s hiking through nature or cycling around a new city, it’s one of my favorite things to do.
+
+Chatbot: That’s great! How about swimming or visiting local gyms? Do you try to keep your fitness routine while on the road?
+
+User: I absolutely do! I try to swim whenever I can, and I always check if there’s a gym at my hotel. Staying fit is a priority for me even while traveling.
+
+Chatbot: Awesome! How do you feel about watching or attending live sports events when you’re in a new destination?
+
+User: I love attending live sports events! Whether it’s football, basketball, or a local game, I always try to go if there’s a match happening while I’m there.

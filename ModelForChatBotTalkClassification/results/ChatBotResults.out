@@ -1,0 +1,158 @@
+t0012
+t0012
+t0012
+t0012
+t0012
+t0012
+t0012
+t0012
+t0012
+t0012
+
+Modules based on Lua: Version 8.5.8  2021-06-30 14:16 -05:00
+    by Robert McLay mclay@tacc.utexas.edu
+
+module [options] sub-command [args ...]
+
+Help sub-commands:
+------------------
+  help                              prints this message
+  help                module [...]  print help message from module(s)
+
+Loading/Unloading sub-commands:
+-------------------------------
+  load | add          module [...]  load module(s)
+  try-load | try-add  module [...]  Add module(s), do not complain if not
+                                    found
+  del | unload        module [...]  Remove module(s), do not complain if not
+                                    found
+  swap | sw | switch  m1 m2         unload m1 and load m2
+  purge                             unload all modules
+  refresh                           reload aliases from current list of
+                                    modules.
+  update                            reload all currently loaded modules.
+
+Listing / Searching sub-commands:
+---------------------------------
+  list                              List loaded modules
+  list                s1 s2 ...     List loaded modules that match the
+                                    pattern
+  avail | av                        List available modules
+  avail | av          string        List available modules that contain
+                                    "string".
+  spider                            List all possible modules
+  spider              module        List all possible version of that module
+                                    file
+  spider              string        List all module that contain the
+                                    "string".
+  spider              name/version  Detailed information about that version
+                                    of the module.
+  whatis              module        Print whatis information about module
+  keyword | key       string        Search all name and whatis that contain
+                                    "string".
+
+Searching with Lmod:
+--------------------
+  All searching (spider, list, avail, keyword) support regular expressions:
+  
+
+  -r spider           '^p'          Finds all the modules that start with
+                                    `p' or `P'
+  -r spider           mpi           Finds all modules that have "mpi" in
+                                    their name.
+  -r spider           'mpi$         Finds all modules that end with "mpi" in
+                                    their name.
+
+Handling a collection of modules:
+--------------------------------
+  save | s                          Save the current list of modules to a
+                                    user defined "default" collection.
+  save | s            name          Save the current list of modules to
+                                    "name" collection.
+  reset                             The same as "restore system"
+  restore | r                       Restore modules from the user's
+                                    "default" or system default.
+  restore | r         name          Restore modules from "name" collection.
+  restore             system        Restore module state to system defaults.
+  savelist                          List of saved collections.
+  describe | mcc      name          Describe the contents of a module
+                                    collection.
+  disable             name          Disable (i.e. remove) a collection.
+
+Deprecated commands:
+--------------------
+  getdefault          [name]        load name collection of modules or
+                                    user's "default" if no name given.
+                                    ===> Use "restore" instead <====
+  setdefault          [name]        Save current list of modules to name if
+                                    given, otherwise save as the default
+                                    list for you the user.
+                                    ===> Use "save" instead. <====
+
+Miscellaneous sub-commands:
+---------------------------
+  is-loaded           modulefile    return a true status if module is loaded
+  is-avail            modulefile    return a true status if module can be
+                                    loaded
+  show                modulefile    show the commands in the module file.
+  use [-a]            path          Prepend or Append path to MODULEPATH.
+  unuse               path          remove path from MODULEPATH.
+  tablelist                         output list of active modules as a lua
+                                    table.
+
+Important Environment Variables:
+--------------------------------
+  LMOD_COLORIZE                     If defined to be "YES" then Lmod prints
+                                    properties and warning in color.
+
+    --------------------------------------------------------------------------
+
+Lmod Web Sites
+
+  Documentation:    http://lmod.readthedocs.org
+  GitHub:           https://github.com/TACC/Lmod
+  SourceForge:      https://lmod.sf.net
+  TACC Homepage:    https://www.tacc.utexas.edu/research-development/tacc-projects/lmod
+
+  To report a bug please read http://lmod.readthedocs.io/en/latest/075_bug_reporting.html
+    --------------------------------------------------------------------------
+
+
+2025-01-07 08:21:17.704496: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:477] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1736234477.861186 3898736 cuda_dnn.cc:8310] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1736234477.916140 3898736 cuda_blas.cc:1418] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2025-01-07 08:21:18.193117: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Text: chatbot : hey there! are you someone who likes to stay active even when you're on vacation? user : absolutely! i always try to fit in some physical activity, like hiking, biking, or even running in a new city. chatbot : that ’ s great! do you enjoy exploring cities on foot or by bike rather than using public transport? user : yes, i prefer biking around or going for a morning run to explore the area. it ’ s a great way to see the sights and stay active. chatbot : do you also enjoy visiting places with great outdoor spaces, like parks or beaches for water sports? user : definitely! i love spending time outdoors, whether it ’ s hiking in nature or trying out water activities like kayaking or paddleboarding.
+Predicted Label: sports
+True Label: sports
+Result: Correct ✅
+--------------------------------------------------
+Text: chatbot : hi! are you interested in checking out any local sports events when you travel? user : yes, for sure! i love visiting stadiums or catching a local match if there ’ s one happening. chatbot : that ’ s awesome! do you also enjoy visiting iconic sports venues, like famous arenas or olympic parks? user : yes, i ’ ve been to a few famous stadiums. even when there ’ s no game, it ’ s great to tour these places and see the history behind them. chatbot : do you make time for fitness activities like swimming or visiting gyms while you ’ re on the road? user : absolutely. i always pack my running shoes and try to fit in some fitness activities. if there ’ s a nice pool or a gym, i ’ m in!
+Predicted Label: sports
+True Label: sports
+Result: Correct ✅
+--------------------------------------------------
+Text: here's another example of a conversation : chatbot : hey there! are you someone who enjoys visiting museums and learning about the local history when you're on vacation? user : yes, definitely! i love visiting museums. it gives me a deeper understanding of the culture and history of the place i'm in. chatbot : that ’ s great! how do you feel about visiting historical sites like castles or ancient ruins? does that interest you too? user : oh, absolutely! i enjoy exploring old castles and ruins. there's something about walking through history that feels really special. chatbot : that ’ s awesome! do you also like attending cultural events, like art exhibitions or local theater performances, when you ’ re traveling? user : yes, i love checking out art galleries and attending performances. it ’ s a great way to experience the culture of the place in a more intimate way.
+Predicted Label: culture
+True Label: culture
+Result: Correct ✅
+--------------------------------------------------
+Text: here ’ s a conversation that highlights a culture - inclined tourist : chatbot : hi! when you travel, do you prefer exploring famous landmarks, or do you enjoy immersing yourself in the local culture more? user : i ’ m more into the local culture! i like experiencing the traditions, art, and food that are unique to the place. chatbot : that ’ s amazing! do you enjoy activities like visiting traditional craft markets or trying local cuisine made from age - old recipes? user : oh, definitely! i always make it a point to visit local markets and try authentic dishes. i love learning about the history behind the food and the crafts. chatbot : that ’ s such a great way to connect with a place! how about music and dance? do you enjoy watching traditional performances, like folk dances or live music shows? user : yes, i do! i think traditional music and dance tell a lot about a culture ’ s identity. i once attended a flamenco performance in spain, and it was unforgettable. chatbot : wow, that sounds like an incredible experience! it ’ s clear that you have a deep appreciation for culture and traditions. do you also enjoy interacting with locals to learn more about their way of life? user : absolutely! i think talking to locals gives the best insight into a culture. whether it ’ s chatting with artisans at a craft fair or joining a cooking class, i love those authentic interactions.
+Predicted Label: culture
+True Label: culture
+Result: Correct ✅
+--------------------------------------------------
+Text: chatbot : hi! when you're on vacation, do you prefer quiet evenings or do you like exploring the nightlife scene? user : i definitely prefer exploring the nightlife! i love checking out local bars, clubs, and live music venues. chatbot : that sounds exciting! do you also enjoy trying out new restaurants and exploring different cuisines? user : oh, absolutely! dining out is one of my favorite parts of traveling. i love discovering hidden gems and trying local dishes. chatbot : that ’ s fantastic! have you ever visited places with famous casinos or entertainment districts? user : yes! i once visited las vegas, and i really enjoyed the atmosphere. it ’ s not just about gambling — it ’ s the whole vibe that ’ s thrilling
+Predicted Label: enterntainment
+True Label: enterntainment
+Result: Correct ✅
+--------------------------------------------------
+Text: chatbot : when you travel, do you look for places to relax, or are you more interested in fun and entertainment? user : i ’ m all about fun and entertainment! i like to keep my evenings packed with activities like shows, concerts, and movies. chatbot : that ’ s awesome! do you also enjoy visiting theaters or comedy clubs to catch live performances? user : definitely! i love live performances. there ’ s nothing like the energy of a live show or a good laugh at a comedy club. chatbot : sounds like you enjoy lively atmospheres! do you also check out local festivals or nightlife events? user : yes, i love attending local festivals. and i never miss the chance to experience the nightlife — it ’ s a great way to meet people and have fun.
+Predicted Label: enterntainment
+True Label: enterntainment
+Result: Correct ✅
+--------------------------------------------------
+
+Overall Testing Accuracy: 100.00%

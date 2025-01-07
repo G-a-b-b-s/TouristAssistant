@@ -1,0 +1,12 @@
+Chatbot: Hi! Are you interested in checking out any local sports events when you travel?
+
+User: Yes, for sure! I love visiting stadiums or catching a local match if there’s one happening.
+
+Chatbot: That’s awesome! Do you also enjoy visiting iconic sports venues, like famous arenas or Olympic parks?
+
+User: Yes, I’ve been to a few famous stadiums. Even when there’s no game, it’s great to tour these places and see the history behind them.
+
+Chatbot: Do you make time for fitness activities like swimming or visiting gyms while you’re on the road?
+
+User: Absolutely. I always pack my running shoes and try to fit in some fitness activities. If there’s a nice pool or a gym, I’m in!
+

@@ -1,0 +1,25 @@
+Chatbot: Hi there! I'd love to help you figure out what type of traveler you are. Can I ask you a few questions?
+
+User: Sure, go ahead!
+
+Chatbot: Awesome! So, when you're traveling, do you enjoy visiting cultural spots like museums, galleries, historical landmarks, or monuments? Maybe places like castles or palaces?
+
+User: Yes, I love visiting museums and historical sites. I enjoy learning about different cultures when I travel.
+
+Chatbot: That's great to hear! Now, when it comes to physical activities, do you enjoy things like running, cycling, or going to the gym? Maybe you visit stadiums or go swimming while traveling?
+
+User: I do like to stay active, but I’m not always focused on it during my travels. I’ll do some running or hiking if I have the chance, but I also enjoy other activities.
+
+Chatbot: Got it! And how do you feel about nightlife? Are you someone who loves exploring local restaurants, clubs, or cinemas? Or maybe you enjoy other entertainment like theaters or live music?
+
+User: Oh, I definitely enjoy the nightlife – going out to eat at great restaurants, checking out the local bars, and sometimes even going to the movies.
+
+Chatbot: That sounds like a lot of fun! If you had an entire free day in a new city, would you prefer to spend it visiting museums and cultural landmarks, exploring local parks and sports activities, or finding the best local spots for food and entertainment?
+
+User: I think I'd love to visit the cultural landmarks, but I also wouldn’t miss trying the local food and seeing the nightlife. It really depends on the place.
+
+Chatbot: That’s really helpful! And lastly, when you're picking a destination, do you typically go for places known for their history and culture, or do you lean more toward lively places with great social activities and outdoor options?
+
+User: I enjoy places with rich history and culture, but I also love destinations where I can unwind and enjoy the social scene, especially the restaurants and cafes.
+
+Chatbot: Thanks so much for sharing! Based on your answers, it seems like you have a mix of cultural and entertainment interests. I’d say you fit into a profile that enjoys exploring rich cultural experiences but also appreciates the social side of traveling. Sounds like you're a perfect fit for destinations with both a historical charm and lively nightlife!
