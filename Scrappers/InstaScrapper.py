@@ -40,7 +40,7 @@ class InstaScrapper:
                 else:
                     shutil.move(file_path, f"./dataScrappedFromSocialMedia/Pictures/{file}")
 
-            with open(f"./dataScrappedFromSocialMedia/Text/Instagram.txt", "w", encoding='utf-8') as f:
+            with open(f"./ModelForTextClassification/testingData/Instagram.txt", "w", encoding='utf-8') as f:
                 f.write(text)
 
         except PermissionError:
