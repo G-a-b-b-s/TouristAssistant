@@ -76,7 +76,6 @@ class Locations:
                 print(f'Distance matrix error: {data["status"]}')
         else:
             print("Distance matrix error: API request failed")
-        # print(self.matrix)
 
     def get_distance_matrix(self):
         length = len(self.pois)

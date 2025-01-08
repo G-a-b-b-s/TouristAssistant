@@ -70,25 +70,30 @@ class POIScrapper:
 
     def get_POIs(self, city: str, num_of_days: int):
         lat, lng = self.get_coords(city)
-        num = 2 * num_of_days
-        pois0 = self.get_POIS_by_type(lat, lng, 'general', num)
-        pois1 = self.get_POIS_by_type(lat, lng, "cultural", 2*num if self.tourist_type == 'cultural' else num)
-        pois2 = self.get_POIS_by_type(lat, lng, "sport", 2*num if self.tourist_type == 'sport' else num)
-        pois3 = self.get_POIS_by_type(lat, lng, "entertainment", 2*num if self.tourist_type == 'entertainment' else num)
+        pois = self.get_POIS_by_type(lat, lng, self.tourist_type, num_of_days * 10)
+        return pois
 
-        ids = [x.id for x in pois0]
-        for poi in pois1:
-            if poi.id not in ids:
-                pois0.append(poi)
-        ids = [x.id for x in pois0]
-        for poi in pois2:
-            if poi.id not in ids:
-                pois0.append(poi)
-        ids = [x.id for x in pois0]
-        for poi in pois3:
-            if poi.id not in ids:
-                pois0.append(poi)
-        return pois0
+    # def get_POIs(self, city: str, num_of_days: int):
+    #     lat, lng = self.get_coords(city)
+    #     num = 2 * num_of_days
+    #     pois0 = self.get_POIS_by_type(lat, lng, 'general', num)
+    #     pois1 = self.get_POIS_by_type(lat, lng, "cultural", 2*num if self.tourist_type == 'cultural' else num)
+    #     pois2 = self.get_POIS_by_type(lat, lng, "sport", 2*num if self.tourist_type == 'sport' else num)
+    #     pois3 = self.get_POIS_by_type(lat, lng, "entertainment", 2*num if self.tourist_type == 'entertainment' else num)
+
+    #     ids = [x.id for x in pois0]
+    #     for poi in pois1:
+    #         if poi.id not in ids:
+    #             pois0.append(poi)
+    #     ids = [x.id for x in pois0]
+    #     for poi in pois2:
+    #         if poi.id not in ids:
+    #             pois0.append(poi)
+    #     ids = [x.id for x in pois0]
+    #     for poi in pois3:
+    #         if poi.id not in ids:
+    #             pois0.append(poi)
+    #     return pois0
 
     def get_POIs_single_type(self, city: str, type: str, num_of_days: int) -> List[POI]:
         lat, lng = self.get_coords(city)
