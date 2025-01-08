@@ -1,39 +1,7 @@
 import requests
 from Pathfinding.PointOfInterest import POI
-# from typing import List
 
-GOOGLE_API_KEY = 'AIzaSyCUws2hUjBLhWoiMCxt2qnPQYjI4TCTCbY'
-
-# class POI:
-#     def __init__(self, id: int, name: str, type: str, latitude: float, longitude: float, tags: List[str]):
-#         self.id = id
-#         self.name = name
-#         self.type = type
-#         self.latitude = latitude
-#         self.longitude = longitude
-#         self.tags = tags
-    
-#     def __eq__(self, value):
-#         if isinstance(value, POI):
-#             return (self.name, self.type, self.latitude, self.longitude) == (value.name, value.type, value.latitude, value.longitude)
-#         return False
-
-#     def __hash__(self):
-#         return hash((self.name, self.type, self.latitude, self.longitude))
-
-#     def __repr__(self):
-#         return f"{self.name}, {self.type} ({self.latitude}, {self.longitude})"
-    
-#     def to_json(self):
-#         return {
-#             'name': self.name,
-#             'type': self.type,
-#             'position': {
-#                 'latitude': self.latitude,
-#                 'longitude': self.longitude
-#             },
-#             'tags': self.tags
-#         }
+from typing import List
 
 class POIScrapper:
     tourist_type: str
@@ -41,7 +9,7 @@ class POIScrapper:
 
     def __init__(self, tourist_type):
         self.tourist_type = tourist_type
-    
+
     def get_coords(self, city: str):
         url = f"https://maps.googleapis.com/maps/api/geocode/json?address={city}&key={self.GOOGLE_API_KEY}"
         res = requests.get(url)
@@ -75,7 +43,8 @@ class POIScrapper:
                 "circle": {
                     "center": {
                         "latitude": lat,
-                        "longitude": lng},
+                        "longitude": lng
+                    },
                     "radius": 10000.0
                     }
                 }
@@ -83,7 +52,7 @@ class POIScrapper:
                 "X-Goog-Api-Key": self.GOOGLE_API_KEY,
                 "X-Goog-FieldMask": "places.id,places.displayName,places.primaryType,places.types,places.location"
             })
-        
+
         if res.status_code == 200:
             places = res.json()['places']
             pois = []
@@ -121,5 +90,7 @@ class POIScrapper:
                 pois0.append(poi)
         return pois0
 
-# pois = POIScrapper("cultural")
-# print(pois.get_POIs('Cracow', 2))
+    def get_POIs_single_type(self, city: str, type: str, num_of_days: int) -> List[POI]:
+        lat, lng = self.get_coords(city)
+        pois = self.get_POIS_by_type(lat, lng, type, num_of_days)
+        return pois
