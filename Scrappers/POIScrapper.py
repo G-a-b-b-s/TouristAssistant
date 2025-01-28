@@ -32,7 +32,7 @@ class POIScrapper:
         elif type == 'cultural':
             includedTypes = ['monument', 'cultural_landmark', 'historical_landmark', 'historical_place', 'performing_arts_theater', 'museum', 'art_gallery', 'philharmonic_hall', 'opera_house']
         elif type == 'sport':
-            includedTypes = ['sports_activity_location', 'ski_resort', 'sports_complex', 'ice_skating_rink', 'golf_course', 'arena', 'stadium', 'adventure_sports_center']
+            includedTypes = ['ski_resort', 'ice_skating_rink', 'golf_course', 'arena', 'stadium', 'adventure_sports_center']
         elif type == 'entertainment':
             includedTypes = ['beach', 'amusement_center', 'amusement_park', 'aquarium', 'botanical_garden', 'bowling_alley', 'comedy_club', 'concert_hall', 'planetarium', 'night_club', 'national_park', 'marina', 'zoo']
 
@@ -70,7 +70,7 @@ class POIScrapper:
 
     def get_POIs(self, city: str, num_of_days: int):
         lat, lng = self.get_coords(city)
-        pois = self.get_POIS_by_type(lat, lng, self.tourist_type, num_of_days * 10)
+        pois = self.get_POIS_by_type(lat, lng, self.tourist_type, num_of_days * 5)
         return pois
 
     # def get_POIs(self, city: str, num_of_days: int):

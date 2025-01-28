@@ -4,10 +4,11 @@ import asyncio
 import json
 
 import googlemaps.distance_matrix
+from Pathfinding.Graph import geodistance
 import requests
 from math import ceil
 from numpy import argmin
-from traveltimepy import TravelTimeSdk, Location, Coordinates, CyclingPublicTransport, Property
+# from traveltimepy import TravelTimeSdk, Location, Coordinates, CyclingPublicTransport, Property
 import googlemaps
 
 from Pathfinding.PointOfInterest import POI
@@ -78,17 +79,28 @@ class Locations:
             print("Distance matrix error: API request failed")
 
     def get_distance_matrix(self):
-        length = len(self.pois)
-        pois_parts = ceil(length / 8)
-        for x in range(0, pois_parts):
-            for y in range(0, pois_parts):
-                x_offset = x * 5
-                y_offset = y * 5
-                self.distance_matrix_part(
-                    self.pois[x_offset:(x_offset + 5)],
-                    self.pois[y_offset:(y_offset + 5)],
-                    x_offset,
-                    y_offset)
+        # length = len(self.pois)
+        # for i in range(length):
+        #     poi1 = self.pois[i]
+        #     for j in range(length):
+        #         poi2 = self.pois[j]
+        #         self.matrix[i][j] = geodistance(poi1.latitude, poi1.longitude, poi2.latitude, poi2.longitude)
+        for i, poi1 in enumerate(self.pois):
+            for j, poi2 in enumerate(self.pois):
+                self.matrix[i][j] = int(
+                    geodistance(poi1.latitude, poi1.longitude, poi2.latitude, poi2.longitude) / 10
+                )
+        print(self.matrix)
+        # pois_parts = ceil(length / 8)
+        # for x in range(0, pois_parts):
+        #     for y in range(0, pois_parts):
+        #         x_offset = x * 5
+        #         y_offset = y * 5
+        #         self.distance_matrix_part(
+        #             self.pois[x_offset:(x_offset + 5)],
+        #             self.pois[y_offset:(y_offset + 5)],
+        #             x_offset,
+        #             y_offset)
         
 
     async def fetch_distance(self):
@@ -199,6 +211,7 @@ class Locations:
                 minute = (times2 % 3600) // 60
                 minute = (minute // 15) * 15
                 poi.set_time(hour, minute)
+
         return result_poi
 
     def daily_sets_to_json(self, daily_sets: List[List[POI]]):

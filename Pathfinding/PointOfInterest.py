@@ -25,7 +25,9 @@ class POI:
         return hash((self.name, self.type, self.latitude, self.longitude))
 
     def __repr__(self):
-        return f"{self.name}, {self.type} ({self.latitude}, {self.longitude})"
+        formatted_hour = ('0' if self.hour < 10 else '' ) + str(int(self.hour))
+        formatted_minute = ('0' if self.minute < 10 else '' ) + str(int(self.minute))
+        return f"{formatted_hour}:{formatted_minute} - {self.name}, {self.type}"
     
     def to_json(self):
         return {
